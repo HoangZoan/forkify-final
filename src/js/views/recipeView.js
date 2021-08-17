@@ -3,6 +3,7 @@ import { View } from './view';
 
 class RecipeView extends View {
   _parentElement = document.querySelector('.recipe');
+  _errorMessage = 'Recipe not found. Please try again!';
 
   addRenderHandler(handler) {
     ['load', 'hashchange'].forEach(event =>
