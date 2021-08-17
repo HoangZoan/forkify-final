@@ -1,15 +1,13 @@
 import icons from 'url:../../img/icons.svg';
+import { View } from './view';
 
-class RecipeView {
-  _data;
+class RecipeView extends View {
   _parentElement = document.querySelector('.recipe');
 
-  render(data) {
-    this._data = data;
-    const markup = this._generateMarkup();
-
-    this._parentElement.innerHTML = '';
-    this._parentElement.insertAdjacentHTML('beforeend', markup);
+  addRenderHandler(handler) {
+    ['load', 'hashchange'].forEach(event =>
+      window.addEventListener(event, handler)
+    );
   }
 
   _generateMarkup() {

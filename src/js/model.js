@@ -21,9 +21,9 @@ const createRecipeObject = function (data) {
   };
 };
 
-export const loadRecipe = async function () {
+export const loadRecipe = async function (id) {
   try {
-    const data = await getJSON(`${API_URL}5ed6604591c37cdc054bcc7e`);
+    const data = await getJSON(`${API_URL}${id}`);
 
     state.recipe = createRecipeObject(data);
   } catch (err) {
