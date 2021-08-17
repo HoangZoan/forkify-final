@@ -16,7 +16,10 @@ class SearchResultView extends View {
   }
 
   addSubmitHandler(handler) {
-    document.querySelector('.search').addEventListener('submit', handler);
+    document.querySelector('.search').addEventListener('submit', e => {
+      e.preventDefault();
+      handler();
+    });
   }
 
   _generateMarkup() {

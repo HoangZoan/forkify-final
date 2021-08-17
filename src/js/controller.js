@@ -19,6 +19,10 @@ const controlRecipe = async function () {
     await loadRecipe(id);
     // console.log(state.recipe);
 
+    // Render search results
+    if (state.search.query !== '')
+      searchResultView.render(state.search.results);
+
     // Render recipe
     recipeView.render(state.recipe);
   } catch (err) {
