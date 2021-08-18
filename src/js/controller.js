@@ -1,9 +1,4 @@
-import {
-  loadSearchResults,
-  loadRecipe,
-  state,
-  getSearchResultsPage,
-} from './model';
+import * as model from './model';
 import recipeView from './views/recipeView';
 import searchResultView from './views/searchResultView';
 import paginationView from './views/paginationView';
@@ -22,15 +17,14 @@ const controlRecipe = async function () {
     recipeView.renderSpinner();
 
     // Add new recipe by id to model state
-    await loadRecipe(id);
-    // console.log(state.recipe);
+    await model.loadRecipe(id);
 
     // Render search results
-    if (state.search.query !== '')
-      searchResultView.render(state.search.results);
+    if (model.state.search.query !== '')
+      searchResultView.render(model.state.search.results);
 
     // Render recipe
-    recipeView.render(state.recipe);
+    recipeView.render(model.state.recipe);
   } catch (err) {
     recipeView.renderError();
   }
@@ -46,16 +40,16 @@ const controlSearchResult = async function () {
     searchResultView.clearInput();
 
     // Get search results
-    await loadSearchResults(query);
+    await model.loadSearchResults(query);
 
     // Get search results on page 1
-    const results = getSearchResultsPage(1);
+    const results = model.getSearchResultsPage(1);
 
     // Render search results
     searchResultView.render(results);
 
     // Render paginaiton
-    paginationView.render(state.search);
+    paginationView.render(model.state.search);
   } catch (err) {
     searchResultView.renderError('Please put in your keywords!');
   }
@@ -63,15 +57,24 @@ const controlSearchResult = async function () {
 
 const controlPagination = function (page = 1) {
   // Get search result page
-  const results = getSearchResultsPage(page);
+  const results = model.getSearchResultsPage(page);
   // Render search results
   searchResultView.render(results);
   // Render pagination
-  paginationView.render(state.search);
+  paginationView.render(model.state.search);
+};
+
+const controlServings = function (newServing) {
+  // Update servings in model state
+  model.updateNewServings(newServing);
+
+  // Render recipe
+  recipeView.render(model.state.recipe);
 };
 
 const init = function () {
   recipeView.addRenderHandler(controlRecipe);
+  recipeView.addUpdateServingsHandler(controlServings);
   searchResultView.addSubmitHandler(controlSearchResult);
   paginationView.addRenderHandler(controlPagination);
 };
