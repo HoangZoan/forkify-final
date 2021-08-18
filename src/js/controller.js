@@ -49,7 +49,7 @@ const controlSearchResult = async function () {
     await loadSearchResults(query);
 
     // Get search results on page 1
-    const results = getSearchResultsPage();
+    const results = getSearchResultsPage(1);
 
     // Render search results
     searchResultView.render(results);
