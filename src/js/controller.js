@@ -1,6 +1,12 @@
-import { loadSearchResults, loadRecipe, state } from './model';
+import {
+  loadSearchResults,
+  loadRecipe,
+  state,
+  getSearchResultsPage,
+} from './model';
 import recipeView from './views/recipeView';
 import searchResultView from './views/searchResultView';
+import paginationView from './views/paginationView';
 
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
@@ -42,15 +48,31 @@ const controlSearchResult = async function () {
     // Get search results
     await loadSearchResults(query);
 
+    // Get search results on page 1
+    const results = getSearchResultsPage();
+
     // Render search results
-    searchResultView.render(state.search.results);
+    searchResultView.render(results);
+
+    // Render paginaiton
+    paginationView.render(state.search);
   } catch (err) {
     searchResultView.renderError('Please put in your keywords!');
   }
 };
 
+const controlPagination = function (page = 1) {
+  // Get search result page
+  const results = getSearchResultsPage(page);
+  // Render search results
+  searchResultView.render(results);
+  // Render pagination
+  paginationView.render(state.search);
+};
+
 const init = function () {
   recipeView.addRenderHandler(controlRecipe);
   searchResultView.addSubmitHandler(controlSearchResult);
+  paginationView.addRenderHandler(controlPagination);
 };
 init();

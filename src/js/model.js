@@ -1,5 +1,5 @@
 import { async } from 'regenerator-runtime';
-import { API_URL } from './config';
+import { API_URL, RESUTLS_PER_PAGE } from './config';
 import { getJSON } from './helpers';
 
 export const state = {
@@ -7,6 +7,8 @@ export const state = {
   search: {
     query: '',
     results: [],
+    page: 1,
+    resultsPerPage: RESUTLS_PER_PAGE,
   },
 };
 
@@ -56,4 +58,11 @@ export const loadSearchResults = async function (query) {
     console.log('model error');
     throw err;
   }
+};
+
+export const getSearchResultsPage = function (page = state.search.page) {
+  state.search.page = page;
+  const start = (page - 1) * RESUTLS_PER_PAGE; // 0, 9, 19...
+  const end = page * 10; // 10, 20, 30...
+  return state.search.results.slice(start, end);
 };
