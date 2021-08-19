@@ -1,6 +1,4 @@
-import { exp } from 'prelude-ls';
 import { View } from './view';
-import icons from 'url:../../img/icons.svg';
 
 class SearchResultView extends View {
   _data;
