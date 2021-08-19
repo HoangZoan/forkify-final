@@ -6,6 +6,8 @@ class SearchResultView extends View {
   _data;
   _parentElement = document.querySelector('.results');
   _errorMessage = 'Results not found. Please try again!';
+  _message = 'What recipe are you looking for?';
+  _iconType = 'icon-search';
 
   getQuery() {
     return document.querySelector('.search__field').value;

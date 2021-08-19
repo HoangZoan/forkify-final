@@ -48,6 +48,13 @@ export class View {
     this._parentElement.insertAdjacentHTML('beforeend', markup);
   }
 
+  renderMessage(message = this._message) {
+    const markup = this._generateMessage(message, this._iconType);
+
+    this._parentElement.innerHTML = '';
+    this._parentElement.insertAdjacentHTML('beforeend', markup);
+  }
+
   renderSpinner() {
     const markup = `
         <div class="spinner">
@@ -82,6 +89,19 @@ export class View {
         <div>
           <svg>
             <use href="${icons}#icon-alert-triangle"></use>
+          </svg>
+        </div>
+        <p>${message}</p>
+      </div>
+    `;
+  }
+
+  _generateMessage(message, iconType) {
+    return `
+      <div class="message">
+        <div>
+          <svg>
+            <use href="${icons}#${iconType}"></use>
           </svg>
         </div>
         <p>${message}</p>

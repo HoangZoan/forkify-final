@@ -54,7 +54,7 @@ const controlSearchResult = async function () {
     // Render paginaiton
     paginationView.render(model.state.search);
   } catch (err) {
-    searchResultView.renderError('Please put in your keywords!');
+    searchResultView.renderMessage();
   }
 };
 
