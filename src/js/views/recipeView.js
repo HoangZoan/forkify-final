@@ -1,6 +1,5 @@
 import icons from 'url:../../img/icons.svg';
 import { View } from './view';
-import { formatQuantity } from '../helpers';
 
 class RecipeView extends View {
   _parentElement = document.querySelector('.recipe');
@@ -87,7 +86,9 @@ class RecipeView extends View {
       <div class="recipe__ingredients">
         <h2 class="heading--2">Recipe ingredients</h2>
         <ul class="recipe__ingredient-list">
-          ${this._data.ingredients.map(this._generateMarkupIngredient).join('')}
+          ${this._data.ingredients
+            .map(this._generateMarkupIngredient.bind(this))
+            .join('')}
       </div>
 
       <div class="recipe__directions">
@@ -120,7 +121,7 @@ class RecipeView extends View {
         <use href="${icons}#icon-check"></use>
       </svg>
       <div class="recipe__quantity">${
-        ing.quantity === null ? '' : formatQuantity(ing.quantity)
+        ing.quantity === null ? '' : this._formatQuantity(ing.quantity)
       }</div>
       <div class="recipe__description">
         <span class="recipe__unit">${ing.unit}</span>

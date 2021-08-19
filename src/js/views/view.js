@@ -61,6 +61,13 @@ export class View {
     this._parentElement.insertAdjacentHTML('beforeend', markup);
   }
 
+  _formatQuantity(num) {
+    const numStr = num.toFixed(2).toString();
+    if (numStr.includes('.0')) return numStr.slice(0, -3);
+    if (numStr.slice(-1) === '0') return numStr.slice(0, -1);
+    return numStr;
+  }
+
   _generateErrorMessage(message) {
     return `
       <div class="error">
