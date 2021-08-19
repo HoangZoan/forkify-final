@@ -7,7 +7,13 @@ class RecipeView extends View {
 
   addRenderHandler(handler) {
     ['load', 'hashchange'].forEach(event =>
-      window.addEventListener(event, handler)
+      window.addEventListener(
+        event,
+        function () {
+          handler();
+          this._goTopPage();
+        }.bind(this)
+      )
     );
   }
 

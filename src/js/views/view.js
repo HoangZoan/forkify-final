@@ -68,6 +68,14 @@ export class View {
     return numStr;
   }
 
+  _goTopPage() {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth',
+    });
+  }
+
   _generateErrorMessage(message) {
     return `
       <div class="error">
