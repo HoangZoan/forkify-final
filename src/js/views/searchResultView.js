@@ -6,6 +6,8 @@ class SearchResultView extends View {
   _data;
   _parentElement = document.querySelector('.results');
   _errorMessage = 'Results not found. Please try again!';
+  _message = 'What recipe are you looking for?';
+  _iconType = 'icon-search';
 
   getQuery() {
     return document.querySelector('.search__field').value;
@@ -20,6 +22,17 @@ class SearchResultView extends View {
       e.preventDefault();
       handler();
     });
+  }
+
+  addPreviewClickHandler() {
+    this._parentElement.addEventListener(
+      'click',
+      function (e) {
+        const prevEl = e.target.closest('.preview');
+        if (!prevEl) return;
+        this._goTopPage();
+      }.bind(this)
+    );
   }
 
   _generateMarkup() {

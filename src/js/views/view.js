@@ -48,6 +48,13 @@ export class View {
     this._parentElement.insertAdjacentHTML('beforeend', markup);
   }
 
+  renderMessage(message = this._message) {
+    const markup = this._generateMessage(message, this._iconType);
+
+    this._parentElement.innerHTML = '';
+    this._parentElement.insertAdjacentHTML('beforeend', markup);
+  }
+
   renderSpinner() {
     const markup = `
         <div class="spinner">
@@ -61,12 +68,43 @@ export class View {
     this._parentElement.insertAdjacentHTML('beforeend', markup);
   }
 
+  _formatQuantity(num) {
+    const numStr = num.toFixed(2).toString();
+    if (numStr.includes('.0')) return numStr.slice(0, -3);
+    if (numStr.slice(-1) === '0') return numStr.slice(0, -1);
+    return numStr;
+  }
+
+  _goTopPage(pag = false) {
+    if (!pag)
+      document.querySelector('.recipe').scrollIntoView({ behavior: 'smooth' });
+    else
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'smooth',
+      });
+  }
+
   _generateErrorMessage(message) {
     return `
       <div class="error">
         <div>
           <svg>
             <use href="${icons}#icon-alert-triangle"></use>
+          </svg>
+        </div>
+        <p>${message}</p>
+      </div>
+    `;
+  }
+
+  _generateMessage(message, iconType) {
+    return `
+      <div class="message">
+        <div>
+          <svg>
+            <use href="${icons}#${iconType}"></use>
           </svg>
         </div>
         <p>${message}</p>

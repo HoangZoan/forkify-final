@@ -22,9 +22,3 @@ export const getJSON = async function (url) {
     throw err;
   }
 };
-
-export const formatQuantity = function (num) {
-  const numStr = num.toFixed(2).toString();
-  if (numStr.includes('00')) return numStr.slice(0, -3);
-  else return numStr;
-};

@@ -5,12 +5,16 @@ class PaginationView extends View {
   _parentElement = document.querySelector('.pagination');
 
   addRenderHandler(handler) {
-    this._parentElement.addEventListener('click', function (e) {
-      const btn = e.target.closest('.btn--inline');
-      if (!btn) return;
+    this._parentElement.addEventListener(
+      'click',
+      function (e) {
+        const btn = e.target.closest('.btn--inline');
+        if (!btn) return;
 
-      handler(btn.dataset.page);
-    });
+        handler(btn.dataset.page);
+        this._goTopPage(true);
+      }.bind(this)
+    );
   }
 
   _generateMarkup() {
