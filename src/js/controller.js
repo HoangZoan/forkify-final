@@ -13,15 +13,15 @@ const controlRecipe = async function () {
     const id = window.location.hash.slice(1);
     if (!id) return;
 
-    // Render spinner
+    // Show loading spinner
     recipeView.renderSpinner();
-
-    // Add new recipe by id to model state
-    await model.loadRecipe(id);
 
     // Render search results
     if (model.state.search.query !== '')
-      searchResultView.render(model.state.search.results);
+      searchResultView.update(model.getSearchResultsPage());
+
+    // Add new recipe by id to model state
+    await model.loadRecipe(id);
 
     // Render recipe
     recipeView.render(model.state.recipe);
@@ -35,6 +35,9 @@ const controlSearchResult = async function () {
     // Get query from search input field
     const query = searchResultView.getQuery();
     if (!query) throw err;
+
+    // Show loading spinner
+    searchResultView.renderSpinner();
 
     // Clear input field
     searchResultView.clearInput();
@@ -69,7 +72,7 @@ const controlServings = function (newServing) {
   model.updateNewServings(newServing);
 
   // Render recipe
-  recipeView.render(model.state.recipe);
+  recipeView.update(model.state.recipe);
 };
 
 const init = function () {
