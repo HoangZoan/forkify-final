@@ -36,6 +36,9 @@ const controlSearchResult = async function () {
     const query = searchResultView.getQuery();
     if (!query) throw err;
 
+    // Render loading spinner
+    searchResultView.renderSpinner();
+
     // Clear input field
     searchResultView.clearInput();
 

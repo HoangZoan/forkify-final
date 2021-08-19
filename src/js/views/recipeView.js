@@ -1,5 +1,6 @@
 import icons from 'url:../../img/icons.svg';
 import { View } from './view';
+import { Fraction } from '../../../node_modules/fractional/index';
 
 class RecipeView extends View {
   _parentElement = document.querySelector('.recipe');
@@ -18,6 +19,7 @@ class RecipeView extends View {
 
       const { updateTo } = btn.dataset;
       if (+updateTo > 0) handler(+updateTo);
+      console.log(Fraction);
     });
   }
 
@@ -118,9 +120,9 @@ class RecipeView extends View {
       <svg class="recipe__icon">
         <use href="${icons}#icon-check"></use>
       </svg>
-      <div class="recipe__quantity">${
+      <div class="recipe__quantity">${new Fraction(
         ing.quantity === null ? '' : ing.quantity
-      }</div>
+      )}</div>
       <div class="recipe__description">
         <span class="recipe__unit">${ing.unit}</span>
         ${ing.description}
