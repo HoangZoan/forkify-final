@@ -24,6 +24,17 @@ class SearchResultView extends View {
     });
   }
 
+  addPreviewClickHandler() {
+    this._parentElement.addEventListener(
+      'click',
+      function (e) {
+        const prevEl = e.target.closest('.preview');
+        if (!prevEl) return;
+        this._goTopPage();
+      }.bind(this)
+    );
+  }
+
   _generateMarkup() {
     const id = window.location.hash.slice(1);
     return this._data

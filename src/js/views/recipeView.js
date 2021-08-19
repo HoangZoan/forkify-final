@@ -7,13 +7,7 @@ class RecipeView extends View {
 
   addRenderHandler(handler) {
     ['load', 'hashchange'].forEach(event =>
-      window.addEventListener(
-        event,
-        function () {
-          handler();
-          this._goTopPage();
-        }.bind(this)
-      )
+      window.addEventListener(event, handler)
     );
   }
 
@@ -25,6 +19,17 @@ class RecipeView extends View {
       const { updateTo } = btn.dataset;
       if (+updateTo > 0) handler(+updateTo);
     });
+  }
+
+  addUpdateBookmarkHanlder(handler) {
+    this._parentElement.addEventListener(
+      'click',
+      function (e) {
+        const btn = e.target.closest('.btn--bookmark');
+        if (!btn) return;
+        handler(this._data);
+      }.bind(this)
+    );
   }
 
   _generateMarkup() {

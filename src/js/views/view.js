@@ -75,12 +75,15 @@ export class View {
     return numStr;
   }
 
-  _goTopPage() {
-    window.scrollTo({
-      top: 0,
-      left: 0,
-      behavior: 'smooth',
-    });
+  _goTopPage(pag = false) {
+    if (!pag)
+      document.querySelector('.recipe').scrollIntoView({ behavior: 'smooth' });
+    else
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'smooth',
+      });
   }
 
   _generateErrorMessage(message) {

@@ -12,7 +12,7 @@ class PaginationView extends View {
         if (!btn) return;
 
         handler(btn.dataset.page);
-        this._goTopPage();
+        this._goTopPage(true);
       }.bind(this)
     );
   }

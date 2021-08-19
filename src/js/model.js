@@ -10,6 +10,7 @@ export const state = {
     page: 1,
     resultsPerPage: RESUTLS_PER_PAGE,
   },
+  bookmarks: [],
 };
 
 const createRecipeObject = function (data) {
@@ -27,6 +28,19 @@ const createRecipeObject = function (data) {
   };
 };
 
+const createPreviewObject = function (data) {
+  return data.map(rec => {
+    return {
+      bookmarked: false,
+      id: rec.id,
+      title: rec.title,
+      publisher: rec.publisher,
+      image: rec.image_url || rec.image,
+      ...(rec.key && { key: rec.key }),
+    };
+  });
+};
+
 export const loadRecipe = async function (id) {
   try {
     const data = await getJSON(`${API_URL}${id}`);
@@ -42,18 +56,9 @@ export const loadSearchResults = async function (query) {
     state.search.query = query;
 
     const data = await getJSON(`${API_URL}?search=${query}`);
-    // console.log(data);
+    const searchResults = data.data.recipes;
 
-    state.search.results = data.data.recipes.map(rec => {
-      return {
-        id: rec.id,
-        title: rec.title,
-        publisher: rec.publisher,
-        image: rec.image_url,
-        ...(rec.key && { key: rec.key }),
-      };
-    });
-    //   console.log(state.search.results);
+    state.search.results = createPreviewObject(searchResults);
   } catch (err) {
     console.log('model error');
     throw err;
@@ -75,4 +80,22 @@ export const updateNewServings = function (newServings) {
         (ing.quantity = (ing.quantity * newServings) / state.recipe.servings)
     );
   state.recipe.servings = newServings;
+};
+
+const addBookmark = function (recipe) {
+  state.recipe.bookmarked = true;
+  state.bookmarks.push(recipe);
+  state.bookmarks = createPreviewObject(state.bookmarks);
+  state.bookmarks[state.bookmarks.length - 1].bookmarked = true;
+};
+
+const removeBookmark = function (recipe) {
+  state.recipe.bookmarked = false;
+  const index = state.bookmarks.findIndex(bm => bm.id === recipe.id);
+  state.bookmarks.splice(index, 1);
+};
+
+export const updateBookmark = function (recipe) {
+  if (!state.bookmarks.some(bm => bm.id === recipe.id)) addBookmark(recipe);
+  else removeBookmark(recipe);
 };
