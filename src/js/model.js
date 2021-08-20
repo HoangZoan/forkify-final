@@ -116,7 +116,7 @@ initBookmark();
 const clearBookmarks = function () {
   localStorage.clear('bookmarks');
 };
-clearBookmarks();
+// clearBookmarks();
 
 export const updateBookmark = function (recipe) {
   if (!state.bookmarks.some(bm => bm.id === recipe.id)) addBookmark(recipe);
