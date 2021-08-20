@@ -7,6 +7,11 @@ class SearchResultView extends View {
   _message = 'What recipe are you looking for?';
   _iconType = 'icon-search';
 
+  constructor() {
+    super();
+    this._addGoTopHandler();
+  }
+
   getQuery() {
     return document.querySelector('.search__field').value;
   }
@@ -22,7 +27,7 @@ class SearchResultView extends View {
     });
   }
 
-  addPreviewClickHandler() {
+  _addGoTopHandler() {
     this._parentElement.addEventListener(
       'click',
       function (e) {
