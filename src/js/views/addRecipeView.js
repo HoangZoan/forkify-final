@@ -10,6 +10,16 @@ class AddRecipeView extends View {
     super();
     this._addOpenModalHandler();
     this._addCloseModalHandler();
+    this._checkFirstInput();
+  }
+
+  addSubmitHandler() {
+    this._formEl.addEventListener('submit', function (e) {
+      e.preventDefault();
+      const formData = [...new FormData(this)];
+      const data = Object.fromEntries(formData);
+      console.log(data);
+    });
   }
 
   _addOpenModalHandler() {
@@ -37,17 +47,14 @@ class AddRecipeView extends View {
     );
   }
 
-  addSubmitHandler() {
-    this._formEl.addEventListener('submit', function (e) {
-      e.preventDefault();
-      const formInputs = [...new FormData(this)];
-      console.log(formInputs);
-    });
-  }
-
   _toggleClasses() {
     this._overlayEl.classList.toggle('hidden');
     this._windowEl.classList.toggle('hidden');
+  }
+
+  _checkFirstInput() {
+    console.log('working');
+    // const input1El = document.querySelector('');
   }
 }
 

@@ -9,7 +9,7 @@ class SearchResultView extends View {
 
   constructor() {
     super();
-    this._addGoTopHandler();
+    this._addGoTopPageHandler();
   }
 
   getQuery() {
@@ -27,7 +27,7 @@ class SearchResultView extends View {
     });
   }
 
-  _addGoTopHandler() {
+  _addGoTopPageHandler() {
     this._parentElement.addEventListener(
       'click',
       function (e) {
