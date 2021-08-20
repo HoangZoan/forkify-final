@@ -6,7 +6,13 @@ class AddRecipeView extends View {
   _windowEl = document.querySelector('.add-recipe-window');
   _formEl = document.querySelector('.upload');
 
-  addOpenModalHandler() {
+  constructor() {
+    super();
+    this._addOpenModalHandler();
+    this._addCloseModalHandler();
+  }
+
+  _addOpenModalHandler() {
     this._parentElement.addEventListener(
       'click',
       function (e) {
@@ -18,7 +24,7 @@ class AddRecipeView extends View {
     );
   }
 
-  addCloseModalHandler() {
+  _addCloseModalHandler() {
     const _this = this;
     [this._overlayEl, this._windowEl].forEach(el =>
       el.addEventListener('click', function (e) {

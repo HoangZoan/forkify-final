@@ -106,11 +106,8 @@ const init = function () {
   recipeView.addRenderHandler(controlRecipe);
   recipeView.addUpdateServingsHandler(controlServings);
   recipeView.addUpdateBookmarkHanlder(controlBookmarks);
-  addRecipeView.addOpenModalHandler();
-  addRecipeView.addCloseModalHandler();
   addRecipeView.addSubmitHandler();
   searchResultView.addSubmitHandler(controlSearchResult);
-  searchResultView.addPreviewClickHandler();
   paginationView.addRenderHandler(controlPagination);
 
   // Render bookmarks when page first loaded
