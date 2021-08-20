@@ -106,11 +106,14 @@ const init = function () {
   recipeView.addRenderHandler(controlRecipe);
   recipeView.addUpdateServingsHandler(controlServings);
   recipeView.addUpdateBookmarkHanlder(controlBookmarks);
-  addRecipeView.addOpenModalHandler(controlAddRecipe);
-  addRecipeView.addCloseModalHandler(controlAddRecipe);
-  bookmarkView.render(model.state.bookmarks);
+  addRecipeView.addOpenModalHandler();
+  addRecipeView.addCloseModalHandler();
+  addRecipeView.addSubmitHandler();
   searchResultView.addSubmitHandler(controlSearchResult);
   searchResultView.addPreviewClickHandler();
   paginationView.addRenderHandler(controlPagination);
+
+  // Render bookmarks when page first loaded
+  if (model.state.bookmarks.length) bookmarkView.render(model.state.bookmarks);
 };
 init();

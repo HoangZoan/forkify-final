@@ -2,6 +2,9 @@ import { View } from './view';
 
 class AddRecipeView extends View {
   _parentElement = document.querySelector('.nav__item');
+  _overlayEl = document.querySelector('.overlay');
+  _windowEl = document.querySelector('.add-recipe-window');
+  _formEl = document.querySelector('.upload');
 
   addOpenModalHandler() {
     this._parentElement.addEventListener(
@@ -16,10 +19,8 @@ class AddRecipeView extends View {
   }
 
   addCloseModalHandler() {
-    const overlay = document.querySelector('.overlay');
-    const window = document.querySelector('.add-recipe-window');
     const _this = this;
-    [overlay, window].forEach(el =>
+    [this._overlayEl, this._windowEl].forEach(el =>
       el.addEventListener('click', function (e) {
         const btn =
           e.target.closest('.overlay') || e.target.closest('.btn--close-modal');
@@ -30,11 +31,16 @@ class AddRecipeView extends View {
     );
   }
 
+  addSubmitHandler() {
+    this._formEl.addEventListener('submit', function (e) {
+      e.preventDefault();
+      console.log('Working');
+    });
+  }
+
   _toggleClasses() {
-    const overlay = document.querySelector('.overlay');
-    const window = document.querySelector('.add-recipe-window');
-    overlay.classList.toggle('hidden');
-    window.classList.toggle('hidden');
+    this._overlayEl.classList.toggle('hidden');
+    this._windowEl.classList.toggle('hidden');
   }
 }
 
