@@ -19,9 +19,8 @@ const controlRecipe = async function () {
     recipeView.renderSpinner();
 
     // Update bookmarks list when page loaded
-    if (model.state.bookmarks.length > 0)
-      bookmarkView.update(model.state.bookmarks);
-    else bookmarkView.renderMessage();
+    if (model.state.bookmarks.length === 0) bookmarkView.renderMessage();
+    bookmarkView.update(model.state.bookmarks);
 
     // Render search results
     if (model.state.search.query !== '')
@@ -105,5 +104,6 @@ const init = function () {
   searchResultView.addSubmitHandler(controlSearchResult);
   searchResultView.addPreviewClickHandler();
   paginationView.addRenderHandler(controlPagination);
+  bookmarkView.render(model.state.bookmarks);
 };
 init();
