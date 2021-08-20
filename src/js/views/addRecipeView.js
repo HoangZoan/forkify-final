@@ -65,6 +65,11 @@ class AddRecipeView extends View {
         const span = this.closest('span');
         const input3 = span.querySelector('input[placeholder="Description"]');
 
+        // Check number type of 'Quantity' inputs
+
+        // Check if 'Description' value required to be put in
+        if (span.dataset.first) return; // Reject 'Ingredient 1' inputs
+
         if (this.value !== '') input3.setAttribute('required', 'true');
         else input3.removeAttribute('required');
       })
