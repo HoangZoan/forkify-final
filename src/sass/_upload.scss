@@ -54,26 +54,43 @@
     gap: 1.5rem;
 
     & label {
+      min-width: 90px;
       font-size: 1.5rem;
       font-weight: 600;
       color: inherit;
     }
 
-    & input {
-      font-size: 1.5rem;
-      padding: 0.8rem 1rem;
-      border: 1px solid #ddd;
-      border-radius: 0.5rem;
-      transition: all 0.2s;
+    & span {
+      display: flex;
+      box-sizing: border-box;
 
-      &::placeholder {
-        color: $color-grey-light-3;
-      }
+      & input {
+        margin: 0 5px;
+        height: 3rem;
+        max-width: 12rem;
+        font-size: 1.5rem;
+        padding: 0.8rem 1rem;
+        border: 1px solid #ddd;
+        border-radius: 0.5rem;
+        transition: all 0.2s;
 
-      &:focus {
-        outline: none;
-        border: 1px solid $color-primary;
-        background-color: $color-grey-light-1;
+        &:first-child {
+          max-width: 8rem;
+        }
+
+        &:last-child {
+          max-width: 18rem;
+        }
+
+        &::placeholder {
+          color: $color-grey-light-3;
+        }
+
+        &:focus {
+          outline: none;
+          border: 1px solid $color-primary;
+          background-color: $color-grey-light-1;
+        }
       }
     }
 
