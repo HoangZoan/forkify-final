@@ -53,8 +53,22 @@ class AddRecipeView extends View {
   }
 
   _checkFirstInput() {
-    console.log('working');
-    // const input1El = document.querySelector('');
+    const inputs1 = document.querySelectorAll('input[placeholder="Quantity"]');
+    const inputs2 = document.querySelectorAll(
+      'input[placeholder="Unit (g, cup...)"]'
+    );
+    const input1Elements = Array.from(inputs1);
+    const input2Elements = Array.from(inputs2);
+    const events = [...input1Elements, ...input2Elements];
+    events.forEach(el =>
+      el.addEventListener('blur', function () {
+        const span = this.closest('span');
+        const input3 = span.querySelector('input[placeholder="Description"]');
+
+        if (this.value !== '') input3.setAttribute('required', 'true');
+        else input3.removeAttribute('required');
+      })
+    );
   }
 }
 

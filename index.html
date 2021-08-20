@@ -260,7 +260,7 @@
       <button class="btn--close-modal">&times;</button>
       <form class="upload">
         <div class="upload__column">
-          <h3 class="upload__heading">Recipe data</h3>
+          <h3 class="upload__heading">Recipe information</h3>
           <label>Title</label>
           <input value="TEST06" required name="title" type="text" />
           <label>URL</label>
@@ -278,29 +278,29 @@
         <div class="upload__column">
           <h3 class="upload__heading">Ingredients</h3>
           <label>Ingredient 1</label>
-          <span>
+          <span data-id="1">
             <input
-              value="1"
+              value=""
               type="text"
               name="ing-1_quantity"
               placeholder="Quantity"
             />
             <input
-              value="kg"
+              value=""
               type="text"
               name="ing-1_unit"
               placeholder="Unit (g, cup...)"
             />
             <input
-              value="Flour"
+              value=""
               type="text"
               name="ing-1_description"
               placeholder="Description"
-              required
+              required="true"
             />
           </span>
           <label>Ingredient 2</label>
-          <span>
+          <span data-id="2">
             <input
               value=""
               type="text"
@@ -321,7 +321,7 @@
             />
           </span>
           <label>Ingredient 3</label>
-          <span>
+          <span data-id="3">
             <input
               value=""
               type="text"
@@ -342,7 +342,7 @@
             />
           </span>
           <label>Ingredient 4</label>
-          <span>
+          <span data-id="4">
             <input
               value=""
               type="text"
@@ -363,7 +363,7 @@
             />
           </span>
           <label>Ingredient 5</label>
-          <span>
+          <span data-id="5">
             <input
               value=""
               type="text"
@@ -384,7 +384,7 @@
             />
           </span>
           <label>Ingredient 6</label>
-          <span>
+          <span data-id="6">
             <input
               value=""
               type="text"
@@ -404,8 +404,10 @@
               placeholder="Description"
             />
           </span>
+          <!-- <div>
+            <p>ABC</p>
+          </div> -->
         </div>
-
         <button class="btn upload__btn">
           <svg>
             <use href="src/img/icons.svg#icon-upload-cloud"></use>
