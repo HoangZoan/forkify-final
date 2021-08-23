@@ -107,6 +107,24 @@
     text-transform: uppercase;
     margin-bottom: 1rem;
     grid-column: 1/-1;
+
+    & span {
+      margin-top: 1rem;
+      & svg {
+        height: 3rem;
+        width: 3rem;
+        fill: $color-primary;
+        transform: translateY(-0.3rem);
+      }
+
+      & p {
+        margin-left: 1.5rem;
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: inherit;
+        text-transform: none;
+      }
+    }
   }
 
   &__btn {
