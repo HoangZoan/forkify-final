@@ -1,6 +1,4 @@
-import { exp } from 'prelude-ls';
 import { View } from './view';
-import icons from 'url:../../img/icons.svg';
 
 class SearchResultView extends View {
   _data;
@@ -8,6 +6,11 @@ class SearchResultView extends View {
   _errorMessage = 'Results not found. Please try again!';
   _message = 'What recipe are you looking for?';
   _iconType = 'icon-search';
+
+  constructor() {
+    super();
+    this._addGoTopPageHandler();
+  }
 
   getQuery() {
     return document.querySelector('.search__field').value;
@@ -24,7 +27,7 @@ class SearchResultView extends View {
     });
   }
 
-  addPreviewClickHandler() {
+  _addGoTopPageHandler() {
     this._parentElement.addEventListener(
       'click',
       function (e) {

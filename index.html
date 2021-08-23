@@ -53,7 +53,7 @@
               </button>
               <div class="bookmarks">
                 <ul class="bookmarks__list">
-                  <!-- <div class="message">
+                  <div class="message">
                     <div>
                       <svg>
                         <use href="src/img/icons.svg#icon-smile"></use>
@@ -62,7 +62,7 @@
                     <p>
                       No bookmarks yet. Find a nice recipe and bookmark it :)
                     </p>
-                  </div> -->
+                  </div>
 
                   <!-- <li class="preview">
                     <a class="preview__link" href="#23456">
@@ -260,7 +260,7 @@
       <button class="btn--close-modal">&times;</button>
       <form class="upload">
         <div class="upload__column">
-          <h3 class="upload__heading">Recipe data</h3>
+          <h3 class="upload__heading">Recipe information</h3>
           <label>Title</label>
           <input value="TEST06" required name="title" type="text" />
           <label>URL</label>
@@ -276,49 +276,219 @@
         </div>
 
         <div class="upload__column">
-          <h3 class="upload__heading">Ingredients</h3>
-          <label>Ingredient 1</label>
-          <input
-            value="0.5,kg,Rice"
-            type="text"
-            required
-            name="ingredient-1"
-            placeholder="Format: 'Quantity,Unit,Description'"
-          />
-          <label>Ingredient 2</label>
-          <input
-            value="1,,Avocado"
-            type="text"
-            name="ingredient-2"
-            placeholder="Format: 'Quantity,Unit,Description'"
-          />
-          <label>Ingredient 3</label>
-          <input
-            value=",,salt"
-            type="text"
-            name="ingredient-3"
-            placeholder="Format: 'Quantity,Unit,Description'"
-          />
-          <label>Ingredient 4</label>
-          <input
-            type="text"
-            name="ingredient-4"
-            placeholder="Format: 'Quantity,Unit,Description'"
-          />
-          <label>Ingredient 5</label>
-          <input
-            type="text"
-            name="ingredient-5"
-            placeholder="Format: 'Quantity,Unit,Description'"
-          />
-          <label>Ingredient 6</label>
-          <input
-            type="text"
-            name="ingredient-6"
-            placeholder="Format: 'Quantity,Unit,Description'"
-          />
-        </div>
+          <h3 class="upload__heading">
+            Ingredients
+            <span class="warning-sign--quantity hidden">
+              <svg>
+                <use href="src/img/icons.svg#icon-alert-circle"></use>
+              </svg>
+              <p>
+                The 'Quantity' field should be a number(5, 0.5...). Please try
+                again!
+              </p>
+            </span>
+            <span class="warning-sign--unit hidden">
+              <svg>
+                <use href="src/img/icons.svg#icon-alert-circle"></use>
+              </svg>
+              <p>The 'Unit' field should not be a number. Please try again!</p>
+            </span>
+          </h3>
 
+          <label>Ingredient 1</label>
+          <span data-first="true">
+            <input
+              value=""
+              type="text"
+              name="ing-1_quantity"
+              placeholder="Quantity"
+              data-type="Quantity"
+            />
+            <input
+              value=""
+              type="text"
+              name="ing-1_unit"
+              placeholder="Unit (g, cup...)"
+              data-type="Unit"
+            />
+            <input
+              value=""
+              type="text"
+              name="ing-1_description"
+              placeholder="Description"
+              data-type="Description"
+              required="true"
+            />
+          </span>
+          <label>Ingredient 2</label>
+          <span>
+            <input
+              value=""
+              type="text"
+              name="ing-2_quantity"
+              placeholder="Quantity"
+              data-type="Quantity"
+            />
+            <input
+              value=""
+              type="text"
+              name="ing-2_unit"
+              placeholder="Unit (g, cup...)"
+              data-type="Unit"
+            />
+            <input
+              value=""
+              type="text"
+              name="ing-2_description"
+              placeholder="Description"
+              data-type="Description"
+            />
+          </span>
+          <label>Ingredient 3</label>
+          <span>
+            <input
+              value=""
+              type="text"
+              name="ing-3_quantity"
+              placeholder="Quantity"
+              data-type="Quantity"
+            />
+            <input
+              value=""
+              type="text"
+              name="ing-3_unit"
+              placeholder="Unit (g, cup...)"
+              data-type="Unit"
+            />
+            <input
+              value=""
+              type="text"
+              name="ing-3_description"
+              placeholder="Description"
+              data-type="Description"
+            />
+          </span>
+          <label>Ingredient 4</label>
+          <span>
+            <input
+              value=""
+              type="text"
+              name="ing-4_quantity"
+              placeholder="Quantity"
+              data-type="Quantity"
+            />
+            <input
+              value=""
+              type="text"
+              name="ing-4_unit"
+              placeholder="Unit (g, cup...)"
+              data-type="Unit"
+            />
+            <input
+              value=""
+              type="text"
+              name="ing-4_description"
+              placeholder="Description"
+              data-type="Description"
+            />
+          </span>
+          <label>Ingredient 5</label>
+          <span>
+            <input
+              value=""
+              type="text"
+              name="ing-5_quantity"
+              placeholder="Quantity"
+              data-type="Quantity"
+            />
+            <input
+              value=""
+              type="text"
+              name="ing-5_unit"
+              placeholder="Unit (g, cup...)"
+              data-type="Unit"
+            />
+            <input
+              value=""
+              type="text"
+              name="ing-5_description"
+              placeholder="Description"
+              data-type="Description"
+            />
+          </span>
+          <label>Ingredient 6</label>
+          <span>
+            <input
+              value=""
+              type="text"
+              name="ing-6_quantity"
+              placeholder="Quantity"
+              data-type="Quantity"
+            />
+            <input
+              value=""
+              type="text"
+              name="ing-6_unit"
+              placeholder="Unit (g, cup...)"
+              data-type="Unit"
+            />
+            <input
+              value=""
+              type="text"
+              name="ing-6_description"
+              placeholder="Description"
+              data-type="Description"
+            />
+          </span>
+          <label>Ingredient 7</label>
+          <span>
+            <input
+              value=""
+              type="text"
+              name="ing-7_quantity"
+              placeholder="Quantity"
+              data-type="Quantity"
+            />
+            <input
+              value=""
+              type="text"
+              name="ing-7_unit"
+              placeholder="Unit (g, cup...)"
+              data-type="Unit"
+            />
+            <input
+              value=""
+              type="text"
+              name="ing-7_description"
+              placeholder="Description"
+              data-type="Description"
+            />
+          </span>
+          <label>Ingredient 8</label>
+          <span>
+            <input
+              value=""
+              type="text"
+              name="ing-8_quantity"
+              placeholder="Quantity"
+              data-type="Quantity"
+            />
+            <input
+              value=""
+              type="text"
+              name="ing-8_unit"
+              placeholder="Unit (g, cup...)"
+              data-type="Unit"
+            />
+            <input
+              value=""
+              type="text"
+              name="ing-8_description"
+              placeholder="Description"
+              data-type="Description"
+            />
+          </span>
+        </div>
         <button class="btn upload__btn">
           <svg>
             <use href="src/img/icons.svg#icon-upload-cloud"></use>
