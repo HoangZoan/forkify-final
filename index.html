@@ -278,6 +278,15 @@
         <div class="upload__column">
           <h3 class="upload__heading">
             Ingredients
+            <span class="warning-sign--quantity hidden">
+              <svg>
+                <use href="src/img/icons.svg#icon-alert-circle"></use>
+              </svg>
+              <p>
+                The 'Quantity' field should be a number(5, 0.5...). Please try
+                again!
+              </p>
+            </span>
             <span class="warning-sign--unit hidden">
               <svg>
                 <use href="src/img/icons.svg#icon-alert-circle"></use>
@@ -290,7 +299,7 @@
           <span data-first="true">
             <input
               value=""
-              type="number"
+              type="text"
               name="ing-1_quantity"
               placeholder="Quantity"
               data-type="Quantity"
@@ -315,7 +324,7 @@
           <span>
             <input
               value=""
-              type="number"
+              type="text"
               name="ing-2_quantity"
               placeholder="Quantity"
               data-type="Quantity"
@@ -339,7 +348,7 @@
           <span>
             <input
               value=""
-              type="number"
+              type="text"
               name="ing-3_quantity"
               placeholder="Quantity"
               data-type="Quantity"
@@ -363,7 +372,7 @@
           <span>
             <input
               value=""
-              type="number"
+              type="text"
               name="ing-4_quantity"
               placeholder="Quantity"
               data-type="Quantity"
@@ -387,7 +396,7 @@
           <span>
             <input
               value=""
-              type="number"
+              type="text"
               name="ing-5_quantity"
               placeholder="Quantity"
               data-type="Quantity"
@@ -411,7 +420,7 @@
           <span>
             <input
               value=""
-              type="number"
+              type="text"
               name="ing-6_quantity"
               placeholder="Quantity"
               data-type="Quantity"
@@ -427,6 +436,54 @@
               value=""
               type="text"
               name="ing-6_description"
+              placeholder="Description"
+              data-type="Description"
+            />
+          </span>
+          <label>Ingredient 7</label>
+          <span>
+            <input
+              value=""
+              type="text"
+              name="ing-7_quantity"
+              placeholder="Quantity"
+              data-type="Quantity"
+            />
+            <input
+              value=""
+              type="text"
+              name="ing-7_unit"
+              placeholder="Unit (g, cup...)"
+              data-type="Unit"
+            />
+            <input
+              value=""
+              type="text"
+              name="ing-7_description"
+              placeholder="Description"
+              data-type="Description"
+            />
+          </span>
+          <label>Ingredient 8</label>
+          <span>
+            <input
+              value=""
+              type="text"
+              name="ing-8_quantity"
+              placeholder="Quantity"
+              data-type="Quantity"
+            />
+            <input
+              value=""
+              type="text"
+              name="ing-8_unit"
+              placeholder="Unit (g, cup...)"
+              data-type="Unit"
+            />
+            <input
+              value=""
+              type="text"
+              name="ing-8_description"
               placeholder="Description"
               data-type="Description"
             />
