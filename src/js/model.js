@@ -32,7 +32,7 @@ const createRecipeObject = function (data, upload = false) {
     publisher: recipe.publisher,
     sourceUrl: recipe.source_url || recipe.sourceUrl,
     image: recipe.image_url || recipe.image,
-    servings: recipe.servings,
+    servings: +recipe.servings,
     cookingTime: recipe.cooking_time || recipe.cookingTime,
     ingredients: recipe.ingredients,
     ...(upload && { upload: true }),
