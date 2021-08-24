@@ -98,15 +98,22 @@ const controlBookmarks = function (recipe) {
   else bookmarkView.renderMessage();
 };
 
-const controlAddRecipe = function () {
-  console.log('Working!');
+const controlAddRecipe = function (newRecipe) {
+  // Update new recipe to model state
+  model.updateNewRecipe(newRecipe);
+
+  // Render the upload in the recipe view
+  recipeView.render(model.state.recipe);
+
+  // Add new recipe as bookmarked
+  bookmarkView.render(model.state.bookmarks);
 };
 
 const init = function () {
   recipeView.addRenderHandler(controlRecipe);
   recipeView.addUpdateServingsHandler(controlServings);
   recipeView.addUpdateBookmarkHanlder(controlBookmarks);
-  addRecipeView.addSubmitHandler();
+  addRecipeView.addSubmitHandler(controlAddRecipe);
   searchResultView.addSubmitHandler(controlSearchResult);
   paginationView.addRenderHandler(controlPagination);
 

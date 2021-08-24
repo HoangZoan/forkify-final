@@ -120,6 +120,14 @@
 
   &__list {
     list-style: none;
+
+    & svg {
+      height: 2.4rem;
+      width: 3.4rem;
+      fill: $color-primary;
+      margin-right: 0.7rem;
+      transform: translateY(-1px);
+    }
   }
 
   &__field {

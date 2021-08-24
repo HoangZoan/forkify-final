@@ -1,10 +1,11 @@
 import { View } from './view';
 
 class AddRecipeView extends View {
-  _parentElement = document.querySelector('.nav__item');
+  _addRecipeEl = document.querySelector('.nav__item');
   _overlayEl = document.querySelector('.overlay');
   _windowEl = document.querySelector('.add-recipe-window');
   _formEl = document.querySelector('.upload');
+  _uploadMessage = document.querySelector('.add-recipe-window .message');
   _submitAvailable = true;
   _valueTypeValidation = [];
 
@@ -15,22 +16,55 @@ class AddRecipeView extends View {
     this._validateInputs();
   }
 
-  addSubmitHandler() {
+  addSubmitHandler(handler) {
     this._formEl.addEventListener(
       'submit',
       function (e) {
         e.preventDefault();
 
+        // Check if the form ready to submit
         if (!this._submitAvailable) return;
         const formData = [...new FormData(this._formEl)];
         const data = Object.fromEntries(formData);
-        // console.log(data);
+
+        // Pass the new recipe data to controller
+        handler(data);
+
+        // Show upload success message
+        this._toggleUploadMessage();
+
+        // Message will be closed after 1.5s, then restore the form fields
+        setTimeout(
+          function () {
+            // Close message
+            this._toggleClasses();
+
+            // Restore form fields
+            this._toggleUploadMessage();
+
+            // Clear previous form inputs
+            this._clearFields();
+          }.bind(this),
+          1000
+        );
       }.bind(this)
     );
   }
 
+  _clearFields() {
+    const inputsEl = this._formEl.querySelectorAll('input');
+    const inputsArr = Array.from(inputsEl);
+    inputsArr.forEach(input => (input.value = ''));
+  }
+
+  _toggleUploadMessage() {
+    [this._formEl, this._uploadMessage].forEach(el =>
+      el.classList.toggle('hidden')
+    );
+  }
+
   _addOpenModalHandler() {
-    this._parentElement.addEventListener(
+    this._addRecipeEl.addEventListener(
       'click',
       function (e) {
         const btn = e.target.closest('.nav__btn--add-recipe');
@@ -165,7 +199,7 @@ class AddRecipeView extends View {
       return true;
     }
 
-    // Check if input values contain number. If true, show message
+    // Check if input values contain number
     if (type === 'quantity')
       numberCheck = newInputArr.every(
         letter => Number.isFinite(+letter) == true
@@ -177,6 +211,7 @@ class AddRecipeView extends View {
       );
     }
 
+    // Show warning message
     if (!numberCheck) messageEl.classList.remove('hidden');
     else messageEl.classList.add('hidden');
 

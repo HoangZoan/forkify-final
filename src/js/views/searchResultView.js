@@ -40,6 +40,7 @@ class SearchResultView extends View {
 
   _generateMarkup() {
     const id = window.location.hash.slice(1);
+    console.log(this._data);
     return this._data
       .map(
         rec => `
@@ -53,7 +54,7 @@ class SearchResultView extends View {
           <div class="preview__data">
               <h4 class="preview__title">${rec.title}</h4>
               <p class="preview__publisher">${rec.publisher}</p>
-          </div>
+          </div>        
           </a>
       </li>
         `

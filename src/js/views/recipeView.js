@@ -80,7 +80,9 @@ class RecipeView extends View {
           </div>
         </div>
 
-        <div class="recipe__user-generated ${this._data.key ? '' : 'hidden'}">
+        <div class="recipe__user-generated ${
+          this._data.upload ? '' : 'hidden'
+        }">
           <svg>
             <use href="${icons}#icon-user"></use>
           </svg>
@@ -132,7 +134,9 @@ class RecipeView extends View {
         <use href="${icons}#icon-check"></use>
       </svg>
       <div class="recipe__quantity">${
-        ing.quantity === null ? '' : this._formatQuantity(ing.quantity)
+        ing.quantity === null || ing.quantity === 0
+          ? ''
+          : this._formatQuantity(ing.quantity)
       }</div>
       <div class="recipe__description">
         <span class="recipe__unit">${ing.unit}</span>
