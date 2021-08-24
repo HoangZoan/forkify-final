@@ -47,6 +47,7 @@ const createPreviewObject = function (data) {
       title: rec.title,
       publisher: rec.publisher,
       image: rec.image_url || rec.image,
+      ...(rec.upload && { upload: true }),
     };
   });
 };
@@ -101,6 +102,10 @@ const persistBookmark = function () {
 };
 
 const addBookmark = function (recipe) {
+  // Store new recipe to the 'upload'
+  state.uploads.push(recipe);
+  if (recipe.upload) window.location.hash = recipe.id;
+
   // Add bookmarked recipe to bookmarks
   state.recipe.bookmarked = true;
   state.bookmarks.push(recipe);
@@ -158,7 +163,8 @@ export const updateNewRecipe = function (newRecipe) {
         description: newRecipe[`ing-${i}_description`],
       });
   }
-  console.log(newRecipe.image);
+
+  // If there is NO image URL, show the default picture
   if (newRecipe.image === '') newRecipe.image = IMG_ALT_LINK;
   newRecipe.id = Date.now().toString().slice(-UPLOAD_ID_LENGTH);
   newRecipe.ingredients = ingredients;
@@ -167,7 +173,6 @@ export const updateNewRecipe = function (newRecipe) {
 
   // Add new recipe to 'state'
   state.recipe = data;
-  state.uploads.push(data);
   window.location.hash = data.id;
 
   // Add new recipe as bookmarked and save to the local storage
