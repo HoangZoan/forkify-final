@@ -165,7 +165,6 @@ export const updateNewRecipe = function (newRecipe) {
   }
 
   // If there is NO image URL, show the default picture
-  if (newRecipe.image === '') newRecipe.image = IMG_ALT_LINK;
   newRecipe.id = Date.now().toString().slice(-UPLOAD_ID_LENGTH);
   newRecipe.ingredients = ingredients;
 
